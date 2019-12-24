@@ -32,9 +32,7 @@ func quit() {
 }
 
 func main() {
-
 	var config zlog.Config
-
 	config.LogFilePath = "/home/nssy/Work/4-zjmnssy/logtest"
 	config.LogLevels = 0x3f
 	config.LogFilePrefix = "test"
@@ -65,7 +63,6 @@ func main() {
 
 	go func() {
 		for {
-			fmt.Printf("111\n")
 			t := time.Now()
 			timeNow := t.UTC().Unix()
 			zlog.Printf(zlog.Error, "file", "timeNow = %d", timeNow)
