@@ -39,7 +39,7 @@ func main() {
 	config.LogLevels = 0x3f
 	config.LogFilePrefix = "test"
 	config.Modules = append(config.Modules, "screen")
-	// config.Modules = append(config.Modules, "file")
+	config.Modules = append(config.Modules, "file")
 	// config.Modules = append(config.Modules, ModulesAll)
 	// config.Modules = append(config.Modules, ModulesNone)
 	config.IsTimeSplit = true
@@ -65,6 +65,7 @@ func main() {
 
 	go func() {
 		for {
+			fmt.Printf("111\n")
 			t := time.Now()
 			timeNow := t.UTC().Unix()
 			zlog.Printf(zlog.Error, "file", "timeNow = %d", timeNow)
