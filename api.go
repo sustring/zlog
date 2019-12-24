@@ -1,9 +1,5 @@
 package zlog
 
-func example() {
-
-}
-
 // Config 日志配置.
 type Config struct {
 	LogFilePath   string   // 日志文件路径(默认：/tmp,即系统/tmp目录下).

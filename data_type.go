@@ -1,5 +1,11 @@
 package zlog
 
+// QueueMaxNumber 日志缓冲队列组大长度
+var QueueMaxNumber = 1000000 // 100w
+
+// LevelMap 日志级别码表
+var LevelMap = make(map[int]string)
+
 // 日志级别
 const (
 	Debug    = 0x0001 // 1
@@ -23,16 +29,6 @@ const (
 	DefaultSplitPeriod       = 60 * 60 * 24
 	DefaultSplitSize         = 1024 * 1024 * 10
 	DefaultLogFileSavePeriod = 7
-)
-
-// 日志缓冲队列组大长度
-const (
-	QueueMaxNumber = 1000000
-)
-
-// 日志级别码表
-var (
-	LevelMap = make(map[int]string)
 )
 
 // Printer 日志执行对象接口

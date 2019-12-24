@@ -115,6 +115,8 @@ func (f *FileLogImpl) listenLogQueue() {
 		} else {
 			f.writeLog(l)
 		}
+
+		time.Sleep(time.Duration(5) * time.Millisecond)
 	}
 }
 

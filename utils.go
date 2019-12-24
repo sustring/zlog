@@ -3,9 +3,7 @@ package zlog
 import (
 	"fmt"
 	"os"
-	"os/signal"
 	"runtime"
-	"syscall"
 )
 
 // 操作系统和架构类型
@@ -39,22 +37,4 @@ func IsExist(path string) (os.FileInfo, error) {
 	}
 
 	return fileInfo, err
-}
-
-type exitFunc func()
-
-// SecurityExitProcess 监听系统信号,执行exitFunc释放程序资源,优雅退出.
-func SecurityExitProcess(exitFunc exitFunc) {
-	c := make(chan os.Signal, 1)
-	signal.Notify(c, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
-	for s := range c {
-		switch s {
-		case syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT:
-			fmt.Printf("\n[ INFO ] (system) - security exit by %s signal.\n", s)
-			exitFunc()
-		default:
-			fmt.Printf("\n[ INFO ] (system) - unknow exit by %s signal.\n", s)
-			exitFunc()
-		}
-	}
 }

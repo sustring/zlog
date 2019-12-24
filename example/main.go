@@ -1,11 +1,31 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/zjmnssy/zlog"
 )
+
+type exitFunc func()
+
+func securityExitProcess(exitFunc exitFunc) {
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT)
+	for s := range c {
+		switch s {
+		case syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT:
+			fmt.Printf("\n[ INFO ] (system) - security exit by %s signal.\n", s)
+			exitFunc()
+		default:
+			fmt.Printf("\n[ INFO ] (system) - unknow exit by %s signal.\n", s)
+			exitFunc()
+		}
+	}
+}
 
 func quit() {
 	os.Exit(0)
@@ -52,5 +72,5 @@ func main() {
 		}
 	}()
 
-	zlog.SecurityExitProcess(quit)
+	securityExitProcess(quit)
 }
