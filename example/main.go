@@ -49,12 +49,14 @@ func main() {
 
 	zlog.Init(config)
 
+	zlog.Prints(zlog.Debug, "file", "000 - %d", 0)
 	zlog.Prints(zlog.Info, "screen", "111 - %d", 1)
 	zlog.Prints(zlog.Notice, "file", "222 - %s", "2")
 	zlog.Prints(zlog.Warn, "screen", "333 - %d", 3)
 	zlog.Prints(zlog.Error, "file", "444 - %d", 4)
 	zlog.Prints(zlog.Critical, "screen", "555 - %d", 5)
 
+	zlog.Printf(zlog.Debug, "screen", "000 - %d %d", 0)
 	zlog.Printf(zlog.Info, "file", "111 - %d %d", 1)
 	zlog.Printf(zlog.Notice, "screen", "222 - %d", 2)
 	zlog.Printf(zlog.Warn, "file", "333 - %d", 3)
