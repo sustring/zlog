@@ -6,6 +6,8 @@ var QueueMaxNumber = 1000000 // 100w
 // LevelMap 日志级别码表
 var LevelMap = make(map[int]string)
 
+var fileLogWriteInterval = 2
+
 // 日志级别
 const (
 	Debug    = 0x0001 // 1

@@ -116,7 +116,7 @@ func (f *FileLogImpl) listenLogQueue() {
 			f.writeLog(l)
 		}
 
-		time.Sleep(time.Duration(5) * time.Millisecond)
+		time.Sleep(time.Duration(fileLogWriteInterval) * time.Millisecond)
 	}
 }
 
